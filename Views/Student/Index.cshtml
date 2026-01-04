@@ -30,15 +30,23 @@
     <div class="col-md-6">
         @using (Html.BeginForm("Index", "Student", FormMethod.Get, new { @class = "form-inline" }))
         {
-            <div class="form-group">
-                <input type="text" name="search" class="form-control" placeholder="Search by NRIC or Name" value="@Model.Search" />
-                <input type="hidden" name="page" value="1" />
-                <button type="submit" class="btn btn-primary">Search</button>
+            <div class="form-group d-flex align-items-center">
+                <!-- Search Box + Button -->
+                <div class="input-group" style="flex:1; max-width:500px;">
+                    <input type="text" name="search" class="form-control" placeholder="Search by NRIC or Name" value="@Model.Search" />
+                    <input type="hidden" name="page" value="1" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary ms-2">Search</button>
+                    </div>
+                </div>
+
+                <!-- Optional Clear Link -->
                 @if (!string.IsNullOrWhiteSpace(Model.Search))
                 {
-                    @Html.ActionLink("Clear", "Index", "Student", new { page = 1 }, new { @class = "btn btn-default" })
+                    <a href="@Url.Action("Index", "Student", new { page = 1 })" class="btn btn-secondary ml-2">Clear</a>
                 }
             </div>
+
         }
     </div>
     <div class="col-md-6 text-right">

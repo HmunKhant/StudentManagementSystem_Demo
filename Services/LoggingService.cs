@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Serilog;
 
 namespace StudentManagementSystem.Services
 {
@@ -28,11 +29,21 @@ namespace StudentManagementSystem.Services
                     IsError = isError
                 });
                 _context.SaveChanges();
+
+                // Also log to Serilog file
+                //if (isError)
+                //{
+                //    Log.Error("Action: {Action} | Description: {Description}", action, description);
+                //}
+                //else
+                //{
+                //    Log.Information("Action: {Action} | Description: {Description}", action, description);
+                //}
             }
             catch (Exception ex)
             {
-                // Log error to file or event log if database logging fails
-                System.Diagnostics.Debug.WriteLine($"Logging Error: {ex.Message}");
+                // Log error to Serilog file if database logging fails
+                //Log.Error(ex, "Failed to log to database. Action: {Action} | Description: {Description}", action, description);
             }
         }
     }
