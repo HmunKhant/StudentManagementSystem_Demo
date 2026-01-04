@@ -97,7 +97,7 @@
     {
         <nav aria-label="Page navigation">
             <ul class="pagination">
-                if (Model.HasPreviousPage)
+                @if (Model.HasPreviousPage)
                 {
                     <li>
                         @Html.ActionLink("«", "Index", "Student", new { page = 1, search = Model.Search }, new { @class = "page-link" })
@@ -117,7 +117,7 @@
                     int endPage = Math.Min(Model.TotalPages, Model.CurrentPage + 2);
                 }
 
-                if (startPage > 1)
+                @if (startPage > 1)
                 {
                     <li>@Html.ActionLink("1", "Index", "Student", new { page = 1, search = Model.Search }, new { @class = "page-link" })</li>
                     if (startPage > 2)
@@ -138,7 +138,7 @@
                     }
                 }
 
-                if (endPage < Model.TotalPages)
+                @if (endPage < Model.TotalPages)
                 {
                     if (endPage < Model.TotalPages - 1)
                     {
@@ -147,7 +147,7 @@
                     <li>@Html.ActionLink(Model.TotalPages.ToString(), "Index", "Student", new { page = Model.TotalPages, search = Model.Search }, new { @class = "page-link" })</li>
                 }
 
-                if (Model.HasNextPage)
+                @if (Model.HasNextPage)
                 {
                     <li>
                         @Html.ActionLink("›", "Index", "Student", new { page = Model.CurrentPage + 1, search = Model.Search }, new { @class = "page-link" })
